@@ -1,5 +1,7 @@
 package hh.sof003.bookstore.web;
 
+import java.util.Locale.Category;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import hh.sof003.bookstore.domain.Book;
 import hh.sof003.bookstore.domain.BookRepository;
+import hh.sof003.bookstore.domain.CategoryRepository;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +23,7 @@ public class BookstoreController {
 
     @Autowired
     private BookRepository repository;
+    private CategoryRepository categoryRepository;
 
     @GetMapping("/index")
     public String indexPage() {
