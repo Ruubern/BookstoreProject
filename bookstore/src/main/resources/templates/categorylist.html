@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Book List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type ="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+</head>
+<body>
+	<table class="table table-striped">
+  <tr>
+   <th>Category</th>
+  </tr>
+     <tr th:each = "category : ${categories}">
+       <td th:text="${category.name}"></td>
+    </tr>
+</table>
+        <a href="/addcategory" class="btn btn-success">Add Category</a>
+</body>
+</html>
