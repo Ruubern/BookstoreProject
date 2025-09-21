@@ -20,10 +20,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class BookstoreController {
 
+    private final BookRepository repository;
+    private final CategoryRepository categoryRepository;
+
     @Autowired
-    private BookRepository repository;
-    @Autowired
-    private CategoryRepository categoryRepository;
+    public BookstoreController(BookRepository repository, CategoryRepository categoryRepository) {
+        this.repository = repository;
+        this.categoryRepository = categoryRepository;
+    }
 
     @GetMapping("/index")
     public String indexPage() {
@@ -39,6 +43,7 @@ public class BookstoreController {
     @GetMapping("/addbook")
     public String getMethodName(Model model) {
         model.addAttribute("book", new Book());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "addbook";
     }
 

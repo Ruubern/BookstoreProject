@@ -20,22 +20,25 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner addBooks(BookRepository repository) {
+	public CommandLineRunner addData(BookRepository repository, CategoryRepository categoryRepository) {
 		return (args) -> {
-			repository.save(new Book("Mistborn: The Final Empire", "Brandon Sanderson","9780765311788", 9.99, 2006));
-			repository.save(new Book("Soul Hunter", "Aaron Dembski-Bowden","9780001809328", 13.99, 2010));
-			repository.save(new Book("Isles of the Emberdark", "Brandon Sanderson","9780000000000", 13.99, 2025));
+			Category category1 = new Category("Science fiction");
+			Category category2 = new Category("Fantasy");
+			Category category3 = new Category("Horror");
+			categoryRepository.save(category1);
+			categoryRepository.save(category2);
+			categoryRepository.save(category3);
+
+			repository.save(new Book("Mistborn: The Final Empire", "Brandon Sanderson", "9780765311788", 9.99, 2006, category2));
+			repository.save(new Book("Night Lords: The Omnibus", "Aaron Dembski-Bowden", "9780441569595", 21.99, 2014, category1));
+			repository.save(new Book("Isles of the Emberdark", "Brandon Sanderson", "9780547928227", 15.99, 2025, category2));
+			
+			System.out.println("fetch all books");
+			for (Book book : repository.findAll()) {
+				System.out.println(book.toString());
+			}
 		};
 	}
 
-	@Bean
-	public CommandLineRunner addCategories(CategoryRepository repository) {
-		return (args) -> {
-			repository.save(new Category("Fantasy"));
-			repository.save(new Category("Science Fiction"));
-			repository.save(new Category("Horror"));
-		};
-	
-	}
 
 }
