@@ -15,6 +15,7 @@ import hh.sof003.bookstore.domain.CategoryRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @Controller
@@ -23,7 +24,6 @@ public class BookstoreController {
     private final BookRepository repository;
     private final CategoryRepository categoryRepository;
 
-    @Autowired
     public BookstoreController(BookRepository repository, CategoryRepository categoryRepository) {
         this.repository = repository;
         this.categoryRepository = categoryRepository;
@@ -82,5 +82,7 @@ public class BookstoreController {
         categoryRepository.save(category);
         return "redirect:/categorylist";
     }
+
+    
     
 }
