@@ -10,8 +10,10 @@ import hh.sof003.bookstore.domain.Book;
 import hh.sof003.bookstore.domain.BookRepository;
 import hh.sof003.bookstore.domain.Category;
 import hh.sof003.bookstore.domain.CategoryRepository;
+import hh.sof003.bookstore.domain.User;
 
 
+@SuppressWarnings("unused")
 @SpringBootApplication
 public class BookstoreApplication {
 
@@ -40,5 +42,14 @@ public class BookstoreApplication {
 		};
 	}
 
+	@Bean
+	public CommandLineRunner addUsers(hh.sof003.bookstore.domain.UserRepository userRepository) {
+		return (args) -> {
+			User user1 = new User("user", "$2a$10$7eqJtq98hPqEX7fNZaFWoOa8d0N9vDU7Y6Nvm1y.6", "user@email.com", "USER");
+			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "admin@email.com", "ADMIN");
+			userRepository.save(user1);
+			userRepository.save(user2);
 
+		};
+	}
 }

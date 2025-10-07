@@ -12,6 +12,9 @@ import hh.sof003.bookstore.domain.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -21,12 +24,12 @@ public class BookstoreRestController {
     @Autowired
     private BookRepository repository;
 
-    @GetMapping("/bookrest")
+    @GetMapping("/books")
     public List<Book> getAllBooks() {
         return (List<Book>) repository.findAll();
     }
  
-    @GetMapping("/bookrest/{id}")
+    @GetMapping("/book/{id}")
     public Optional<Book> getBookById(@PathVariable Long id) {
         return repository.findById(id);
     }

@@ -29,6 +29,12 @@ public class BookstoreController {
         this.categoryRepository = categoryRepository;
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+    
+
     @GetMapping("/index")
     public String indexPage() {
         return "index";
